@@ -2,15 +2,9 @@ import groupDark from "~/public/images/group-dark.jpeg";
 import shelDark from "~/public/images/shel-solo-dark.jpeg";
 import davisDark from "~/public/images/davis-solo-dark.jpeg"
 import darrylDark from "~/public/images/darryl-solo-dark.jpeg";
-import { StaticImageData } from "next/image";
+import { HeadlineImage } from "@/types/types";
 
-type HeadlineImage = {
-  id: number;
-  src: StaticImageData;
-  alt: string;
-};
-
-export const headlineImgs = [
+export const headlineImgs: HeadlineImage[] = [
   {
     id: 1,
     src: shelDark,
