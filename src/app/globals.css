@@ -198,9 +198,10 @@ a {
   height: 100%;
 }
 
-#middle-image {
+.center-position {
   position: relative;
   width: 75%;
+  animation: leftToCenter 0.6s ease-in forwards;
 }
 
 #next-side-image, #prev-side-image {

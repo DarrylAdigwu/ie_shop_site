@@ -20,9 +20,4 @@ export const headlineImgs: HeadlineImage[] = [
     src: groupDark,
     alt: "Image of ie shop male model wearing ie hat with dark background"
   },
-  // {
-  //   id: 4,
-  //   src: darrylDark,
-  //   alt: "Image of ie shop male model wearing ie hat with dark background"
-  // }
 ]

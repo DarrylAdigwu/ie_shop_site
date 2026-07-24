@@ -1,12 +1,13 @@
 "use client";
 import React from "react";
-import {useState} from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
-import {headlineImgs} from "../data/headline-images";
+import { headlineImgs } from "../data/headline-images";
 
 
 export default function Headline(): React.JSX.Element {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [carouselPause, setCarouselPause] = useState(false);
 
   const prevImage = currentImageIndex === 0 ? headlineImgs.length - 1 : currentImageIndex - 1;
   const nextImage = currentImageIndex === headlineImgs.length - 1 ? 0 : currentImageIndex + 1;
@@ -21,7 +22,14 @@ export default function Headline(): React.JSX.Element {
     setCurrentImageIndex(prev => (
       prev === headlineImgs.length - 1 ? 0 : prev + 1
     ));
-  }
+  };
+
+  useEffect(() => {
+    const carouselTimer = setInterval(() => {
+      handleNextImage();
+    }, 4000);
+  }, []);
+
   return(
     <section id="headline">
       <div id="headline-wrapper" className="wrapper">
@@ -31,7 +39,9 @@ export default function Headline(): React.JSX.Element {
         >
           HEADLINE MESSAGE HERE
         </h1>
-        <div id="headline-image-carousel">
+        <div 
+          id="headline-image-carousel"
+        >
           <div id="prev-side-image" className="headline-image-container">
             <Image
               src={headlineImgs[prevImage].src}
@@ -74,4 +84,4 @@ export default function Headline(): React.JSX.Element {
       </div>
     </section>
   )
-}
+} 
