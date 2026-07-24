@@ -3,7 +3,7 @@ import shelDark from "~/public/images/shel-solo-dark.jpeg";
 import davisDark from "~/public/images/davis-solo-dark.jpeg"
 import darrylDark from "~/public/images/darryl-solo-dark.jpeg";
 import { HeadlineImage } from "@/types/types";
-
+import silasClose from "~/public/images/silas-close.jpg"
 export const headlineImgs: HeadlineImage[] = [
   {
     id: 1,
@@ -18,6 +18,11 @@ export const headlineImgs: HeadlineImage[] = [
   {
     id: 3,
     src: groupDark,
+    alt: "Image of ie shop male model wearing ie hat with dark background"
+  },
+  {
+    id: 4,
+    src: silasClose,
     alt: "Image of ie shop male model wearing ie hat with dark background"
   },
 ]
