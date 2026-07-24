@@ -350,7 +350,7 @@ a {
 } */
 #product {
   width: 100dvw;
-  height: 70dvh;
+  height: 70svh;
 }
 
 #product-wrapper {
@@ -385,7 +385,7 @@ a {
 
 @media screen and (min-width: 540px) {
   #product {
-    height: 70dvh;
+    height: 70svh;
   }
 
   .product-container {
@@ -395,7 +395,7 @@ a {
 
 @media screen and (min-width:1024px) {
   #product {
-    height: 90dvh;
+    height: 90svh;
   }
 }
 
