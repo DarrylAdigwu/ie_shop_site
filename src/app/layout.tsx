@@ -1,6 +1,13 @@
 import type { Metadata } from "next";
 import type { RootLayoutProps } from "@/types/types";
 import "./globals.css";
+import { Manufacturing_Consent, Rochester, Pacifico } from "next/font/google";
+
+const manufacturing = Manufacturing_Consent({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-manufacturing"
+})
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_URL || "http://localhost:3000"),
@@ -38,6 +45,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      className={`${manufacturing.variable}`}
     >
       <body>
         {children}

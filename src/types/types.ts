@@ -5,8 +5,17 @@ export type RootLayoutProps = Readonly<{
     children: React.ReactNode;
 }>
 
-export type HeadlineImage = {
+export type CarouselImages = {
   id: number;
   src: StaticImageData;
   alt: string;
 };
+
+export type hatProducts = {
+  id: number,
+  src: StaticImageData, 
+  alt: string,
+  sizes: string[],
+  color: string,
+  price: string
+}
