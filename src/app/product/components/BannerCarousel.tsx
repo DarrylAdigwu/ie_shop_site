@@ -2,6 +2,8 @@
 import { useEffect, useState, JSX, useRef } from "react";
 import { bannerImages } from "@/data/banner-images";
 import Image from "next/image";
+import { GoChevronRight } from "react-icons/go";
+import { GoChevronLeft } from "react-icons/go";
 
 export default function BannerCarousel({ autoSlide = 3000 }) {
   const [currentIndex, setCurrentIndex] = useState<number>(1);
@@ -94,13 +96,13 @@ export default function BannerCarousel({ autoSlide = 3000 }) {
           className="banner-prev-slide"
           onClick={prevSlide}
           >
-          Prev
+          <GoChevronLeft />
         </button>
         <button 
           className="banner-next-slide"
           onClick={nextSlide}
           >
-          Next
+          <GoChevronRight />
         </button>
       </div>
     </>

@@ -49,8 +49,8 @@ a {
 }
 
 h1 {
-  font-family: var(--font-manufacturing);
-  font-size: 2.5rem;
+  font-family: var(--font-birthstone);
+  font-size: 2rem;
   color: #171717;
 }
 
@@ -68,8 +68,8 @@ h3 {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid #171717;
-  color: #171717;
+  border: 1px solid #ededed;
+  color: #ededed;
   width: 45%;
   max-width: 150px;
   height: 50px;
@@ -77,9 +77,9 @@ h3 {
 }
 
 .link-btn:hover {
-  background-color: #171717;
+  background-color: #ededed;
   transition: all 0.6s ease-in-out;
-  color: #ededed;
+  color: #171717;
   cursor: pointer;
 }
 
@@ -99,6 +99,15 @@ h3 {
   padding: 0 1rem;
 }
 
+.social-media-icon, 
+#product-cart-icon,
+#contact-cart-icon {
+  font-size: 1.25rem;
+  cursor: pointer;
+  color: #ededed;
+}
+
+
 /****
   HERO
 ****/
@@ -110,7 +119,36 @@ h3 {
   width: 100%;
   height: 100svh;
   text-align: center;
-  gap: 3rem;
+  gap: 2rem;
+  background-color: #171717;
+}
+
+#hero-content-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 80%;
+  gap: 2rem;
+}
+
+#hero-logo-container {
+  position: relative;
+  width: 150px;
+  aspect-ratio: 1;
+}
+
+#hero-logo {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+#hero-headline {
+  color: #ededed;
+  width: 100%;
+  font-family: var(--font-birthstone);
+  font-size: 1.65rem;
 }
 
 .home-buttons {
@@ -118,7 +156,6 @@ h3 {
   justify-content: space-between;
   align-items: center;
   width: 80%;
-
 }
 
 /****
@@ -126,12 +163,13 @@ h3 {
 ****/
 
 .header-container  {
-  position: absolute;
+  position: relative;
   display: flex;
   align-items: center;
   height: 5em;
   width: 100%;
   z-index: 1;
+  background-color: #171717;
   border-bottom: 1px solid #ededed;
 }
 
@@ -166,18 +204,6 @@ h3 {
   border-radius: 4px;
 }
 
-.header-cart-icon {
-  font-size: 1.25em;
-}
-
-#product-cart-icon {
-  color: #ededed;
-}
-
-#contact-cart-icon {
-  color: #ededed;
-}
-
 @media screen and (min-width: 768px) {
   #header-container {
     height: 8em;
@@ -207,11 +233,12 @@ h3 {
 }
 
 .product-banner {
+  position: relative;
   display: flex;
-  height: 90svh;
+  height: 70svh;
   width: 100dvw;
   overflow: hidden;
-  font-family: var(--font-manufacturing);
+  font-family: var(--font-birthstone);
 }
 
   /* The horizontal track sliding left and right */
@@ -246,13 +273,14 @@ h3 {
   width: 100%;
   height: fit-content;
   top: 50%;
+  transform: translateY(-50%);
 }
 
 .banner-next-slide, .banner-prev-slide {
-  height: 20px;
+  font-size: 2rem;
   position: relative;
   color: #ededed;
-
+  cursor: pointer;
 }
 
 .product-section {
@@ -432,12 +460,6 @@ footer p {
   align-items: center;
   gap: .25rem;
   width: 17.5%;
-}
-
-.social-media-icon {
-  font-size: 1.25rem;
-  cursor: pointer;
-  color: #ededed;
 }
 
 @media screen and (min-width: 768px) {

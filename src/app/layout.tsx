@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import type { RootLayoutProps } from "@/types/types";
 import "./globals.css";
-import { Manufacturing_Consent, Rochester, Pacifico } from "next/font/google";
+import { Birthstone, Rochester, Pacifico } from "next/font/google";
 
-const manufacturing = Manufacturing_Consent({
+const birthstone = Birthstone ({
   weight: "400",
   subsets: ["latin"],
-  variable: "--font-manufacturing"
+  variable: "--font-birthstone"
 })
 
 export const metadata: Metadata = {
@@ -45,7 +45,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${manufacturing.variable}`}
+      className={`${birthstone.variable}`}
     >
       <body>
         {children}
