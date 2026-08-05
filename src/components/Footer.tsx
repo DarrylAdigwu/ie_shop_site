@@ -22,7 +22,7 @@ export default function Footer(): React.JSX.Element {
         </Link>
 
         <div className="social-media-container">
-          <a href="https://www.instagram.com/ieshop/" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.instagram.com/theie.shop" target="_blank" rel="noopener noreferrer">
             <FaInstagram className="social-media-icon" />
           </a>
           {/* <a href="https://www.shopify.com/ieshop" target="_blank" rel="noopener noreferrer">

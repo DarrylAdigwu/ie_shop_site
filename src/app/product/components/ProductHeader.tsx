@@ -18,7 +18,7 @@ export default function Header(): React.JSX.Element {
           />
         </Link>
 
-        <a href="https://www.instagram.com/ieshop/" target="_blank" rel="noopener noreferrer">
+        <a href="https://www.instagram.com/theie.shop" target="_blank" rel="noopener noreferrer">
           <FaInstagram className="social-media-icon" />
         </a>
       </div>
