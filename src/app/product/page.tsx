@@ -1,25 +1,12 @@
 "use client"
-import React from "react";
+import {JSX, useState, useEffect} from "react";
 import { bannerImages } from "@/data/banner-images";
 import { hats } from "@/data/products";
 import Image from "next/image";
+import BannerCarousel from "./components/BannerCarousel";
 
-export default function Product(): React.JSX.Element {
-  const [currentIndex, setCurrentIndex] = React.useState(0);
+export default function Product(): JSX.Element {
 
-  const bannerImgs = bannerImages.map((image, index) => {
-    return(
-      <div className="images-container" key={image.id}>
-        <Image
-          src={image.src}
-          alt={image.alt}
-          className="banner-image"
-          placeholder="blur"
-          fill
-        />
-      </div>
-    )
-  });
 
   const allHats = hats.map((hat, index) => {
     return(
@@ -31,6 +18,7 @@ export default function Product(): React.JSX.Element {
             className="hat-images"
             placeholder="blur"
             fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
         </div>
         <div className="product-info">
@@ -47,7 +35,7 @@ export default function Product(): React.JSX.Element {
   return(
     <main>
       <div className="product-banner">
-        {bannerImgs}
+        <BannerCarousel autoSlide={4000}/>
       </div>
       <h3 className="product-headline">
         Place your Pre-Order now
