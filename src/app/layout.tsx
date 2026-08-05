@@ -6,7 +6,8 @@ import { Birthstone, Rochester, Pacifico } from "next/font/google";
 const birthstone = Birthstone ({
   weight: "400",
   subsets: ["latin"],
-  variable: "--font-birthstone"
+  variable: "--font-birthstone",
+  display: "swap",
 })
 
 export const metadata: Metadata = {
