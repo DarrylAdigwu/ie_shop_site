@@ -4,7 +4,8 @@ import savSoniaDark from "~/public/images/sav-sonia-dark.jpeg";
 import silasCloseDark from "~/public/images/silas-close.jpg";
 import shelDark from "~/public/images/shel-solo-dark.jpeg";
 import davisDark from "~/public/images/davis-solo-dark.jpeg";
-
+import savDark from "~/public/images/savDark.jpg";
+import guysDark from "~/public/images/guysDark.jpg";
 
 export const bannerImages: CarouselImages[] = [
   {
@@ -25,6 +26,16 @@ export const bannerImages: CarouselImages[] = [
   {
     id: 4,
     src: davisDark,
+    alt: "Images of models wearing ie hats",
+  },
+  {
+    id: 5,
+    src: groupDark,
+    alt: "Images of models wearing ie hats",
+  },
+  {
+    id: 6,
+    src: guysDark,
     alt: "Images of models wearing ie hats",
   },
 ]
