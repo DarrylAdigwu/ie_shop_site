@@ -49,7 +49,8 @@ body {
   border: 0;
 }
 
-#main-content {
+#main-content, 
+#main-product-content {
   width: 100dvw;
   min-width: 100dvw;
   height: 100dvh;
@@ -76,6 +77,24 @@ h2 {
 
 h3 {
   font-size: 1.25rem;
+}
+
+.back-to-link {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  margin-top: 2rem;
+  width: 100%;
+}
+
+.back-to-link:hover,
+.back-to-link:active,
+.back-to-link:focus {
+  text-decoration: underline;
+}
+
+.back-to-icon {
+  font-size: 1.5rem;
 }
 
 .contact-headline,
@@ -474,6 +493,9 @@ main.main-hero-content {
 #main-product-content {
   position: relative;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: fit-content;
 }
 
 .product-container {
@@ -483,7 +505,7 @@ main.main-hero-content {
   align-items: center;
   gap: 1em;
   min-height: 100svh;
-  width: 100dvw;
+  width: 100%;
   padding: 2rem 0;
 }
 
@@ -526,8 +548,10 @@ main.main-hero-content {
 
 .product-page-btns {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   width: 100%;
+  gap: 1rem;
   order: 3;
 }
 
@@ -536,7 +560,7 @@ main.main-hero-content {
   display: flex;
   justify-content: center;
   align-self: flex-start;
-  width: 47.5%;
+  width: 100%;
   border-radius: 4px;
   background-color: transparent;
   padding: 0 1rem;

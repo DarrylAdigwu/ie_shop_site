@@ -1,9 +1,11 @@
 import Image from "next/image";
+import Link from "next/link";
 import { shopifyFetch } from "@/lib/shopify";
 import { ShopifyProductType } from "@/types/shopifyTypes";
 import { GET_PRODUCT_QUERY } from "@/graphql/queries/products";
 import { notFound } from "next/navigation";
 import { IoMdArrowDropdown } from "react-icons/io";
+import { HiArrowLongLeft } from "react-icons/hi2";
 
 interface Props {
   params: Promise<{ handle: string }>;
@@ -41,6 +43,14 @@ export default async function Product({ params }: Props) {
   console.log(productImage)
   return(
     <main id="main-product-content">
+      <Link
+        href={"/shop"}
+        className="back-to-link"
+      >
+        <HiArrowLongLeft className="back-to-icon"/>
+        Back to shop
+      </Link>
+
       <div className="product-container">
         <div className="product-image-container">
           <Image 
