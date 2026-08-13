@@ -8,7 +8,7 @@ export const GET_PRODUCT_QUERY = `
         name
         values
       }
-      images(first: 1) {
+      images(first: 5) {
         edges {
           node { 
             url 
