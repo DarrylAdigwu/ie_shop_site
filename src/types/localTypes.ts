@@ -16,6 +16,7 @@ export type hatProducts = {
   src: StaticImageData, 
   alt: string,
   sizes: string[],
-  color: string,
-  price: string
+  description: string,
+  price: number
 }
+

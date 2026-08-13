@@ -5,7 +5,7 @@ import whiteLogo from "~/public/images/white-ie-logo.png";
 
 export default function Home() {
   return (
-    <main id="main-content">
+    <main className="main-hero-content">
       <section id="hero">
         <div id="hero-content-container">
           <div id="hero-logo-container">
@@ -26,7 +26,7 @@ export default function Home() {
         </div>
         <div className="home-buttons">
           <Link 
-            href={`/product`}
+            href={`/shop`}
             id="shop-btn" 
             className="link-btn"
           >

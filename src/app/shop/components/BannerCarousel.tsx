@@ -69,6 +69,7 @@ export default function BannerCarousel({ autoSlide = 3000 }) {
         <Image
           src={image.src}
           alt={image.alt}
+          id={`banner-image-${image.id}`}
           className="banner-image"
           placeholder="blur"
           fill

@@ -1,4 +1,4 @@
-import { CarouselImages } from "@/types/types";
+import { CarouselImages } from "@/types/localTypes";
 import groupDark from "~/public/images/group-dark.jpeg";
 import savSoniaDark from "~/public/images/sav-sonia-dark.jpeg";
 import silasCloseDark from "~/public/images/silas-close.jpg";

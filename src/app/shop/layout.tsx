@@ -1,5 +1,5 @@
 import React from "react";
-import ProductHeader from "@/app/product/components/ProductHeader";
+import ProductHeader from "@/app/shop/components/ProductHeader";
 import Footer from "@/components/Footer";
 
 export default function ProductLayout({ children }: { children: React.ReactNode}): React.JSX.Element {

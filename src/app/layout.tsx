@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import type { RootLayoutProps } from "@/types/types";
+import type { RootLayoutProps } from "@/types/localTypes";
 import "./globals.css";
 import { Birthstone, Rochester, Pacifico } from "next/font/google";
 

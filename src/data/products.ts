@@ -1,6 +1,6 @@
 import greenSnap from "~/public/images/green-ie-snap.jpg";
 import greenFitted from "~/public/images/green-ie-fitted.jpg";
-import { hatProducts } from "@/types/types"
+import { hatProducts } from "@/types/localTypes"
 
 export const hats: hatProducts[] = [
   {
@@ -8,15 +8,15 @@ export const hats: hatProducts[] = [
     src: greenSnap,
     alt: "The green Inland Empire snapback",
     sizes: ["small", "medium", "large"],
-    color: "Forest Green / Snapback",
-    price: "$29.99"
+    description: "Forest Green / Snapback",
+    price: 29.99
   },
   {
     id: 2,
     src: greenFitted,
     alt: "The green Inland Empire fitted hat",
     sizes: ["small", "medium", "large"],
-    color: "Forest Green / Stretch",
-    price: "$29.99"
+    description: "Forest Green / Stretch",
+    price: 29.99
   }
 ]
