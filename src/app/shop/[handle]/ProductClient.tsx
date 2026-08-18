@@ -8,6 +8,7 @@ import { ShopifyProductType } from "@/types/shopifyTypes";
 import { notFound } from "next/navigation";
 import { useCart } from "@/components/CartContext";
 import AddToCartButton from "@/components/AddToCartButton";
+import { formatPrice } from "@/lib/utils";
 
 type SingleShopifyImageType = {
   node: {
@@ -93,7 +94,7 @@ export default function ProductClient({ product }: ShopifyProductType) {
               <p>{title}</p>
             </div>
             <div className="product-price">
-              <p className="price-amount">{`$${price.amount}`}</p>
+              <p className="price-amount">{formatPrice(price.amount, price.currencyCode)}</p>
             </div>
           </section>
         <div className="product-content-card-container">

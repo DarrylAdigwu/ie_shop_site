@@ -4,6 +4,7 @@ import BannerCarousel from "./components/BannerCarousel";
 import { shopifyFetch } from "@/lib/shopifyFetch";
 import { ShopifyProductType, ShopifyCollectionType } from "@/types/shopifyTypes";
 import { GET_SHOP_COLLECTION } from "@/graphql/queries/shop";
+import { formatPrice } from "@/lib/utils";
 
 interface Props {
   params: Promise<{ handle: string }>;
@@ -56,7 +57,7 @@ export default async function ShopPage() {
             {title}
           </span>
           <span className="shop-hat-price">
-            {`$${price.amount}`}
+            {formatPrice(price.amount, price.currencyCode)}
           </span>
         </Link>
       </div>

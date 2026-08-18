@@ -6,6 +6,8 @@ import Image from "next/image";
 import Link from "next/link";
 import ieBlackLogo from "~/public/images/black-ie-logo.png";
 import { BsFillTrash2Fill } from "react-icons/bs";
+import { formatPrice } from "@/lib/utils";
+
 
 export default function Cart({liveCartId, isOpen}: {liveCartId: string | null; isOpen: boolean}) {
   const {cartData, loading, removeItem, updateQuantity} = useCart();
@@ -40,7 +42,9 @@ export default function Cart({liveCartId, isOpen}: {liveCartId: string | null; i
             <p className="cart-item-variant-title">{`(${node.merchandise.title})`}</p>
           </div>
           <div className="price-container">
-            <p className="cart-item-price">{`$${node.merchandise.price.amount}`}</p>
+            <p className="cart-item-price">
+              {formatPrice(node.cost.totalAmount.amount, node.cost.totalAmount.currencyCode)}
+            </p>
           </div>
           <div className="cart-item-quantity-container">
             <button 
@@ -81,7 +85,7 @@ export default function Cart({liveCartId, isOpen}: {liveCartId: string | null; i
         <div className="cart-totals-container">
           <div className="subtotal-container">
             <h4 className="subtotal-header">Subtotal:</h4>
-            <p className="subtotal">${subtotal?.amount}</p>
+            <p className="subtotal">{subtotal ? formatPrice(subtotal.amount, subtotal.currencyCode): "$0.00"}</p>
             {/* <span className="currency-code">{subtotal?.currencyCode}</span> */}
           </div>
           <Link 
