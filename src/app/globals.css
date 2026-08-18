@@ -854,23 +854,22 @@ main.main-hero-content {
   border-radius: 4px;
 }
 
-.cart-item-quantity {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-right: 1px solid #171717;
-  border-left: 1px solid #171717;
-  width: 1.25rem;
-  height: 1.25rem;
-}
-
+.cart-item-quantity, 
 .add-item-quantity, 
 .subtract-item-quantity {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 1.25rem;
   width: 1.25rem;
+  height: 1.25rem;
+}
+.cart-item-quantity {
+  border-right: 1px solid #171717;
+  border-left: 1px solid #171717;
+}
+
+.add-item-quantity, 
+.subtract-item-quantity {
   cursor: pointer;
 }
 
