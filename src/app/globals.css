@@ -866,9 +866,10 @@ main.main-hero-content {
 
 .add-item-quantity, 
 .subtract-item-quantity {
-  height: 100%;
-  aspect-ratio: 1;
+  height: 1.25rem;
+  width: 1.25rem;
   cursor: pointer;
+  border: 1px solid red;
 }
 
 .cart-totals-container {
