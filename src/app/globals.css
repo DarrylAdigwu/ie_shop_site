@@ -865,7 +865,7 @@ main.main-hero-content {
 
 .add-item-quantity, 
 .subtract-item-quantity {
-  height: auto;
+  height: 100%;
   aspect-ratio: 1;
   cursor: pointer;
 }
