@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import type { RootLayoutProps } from "@/types/localTypes";
 import "./globals.css";
 import { Birthstone, Rochester, Pacifico } from "next/font/google";
+import CartContextProvider from "@/components/CartContext";
 
 const birthstone = Birthstone ({
   weight: "400",
@@ -49,7 +50,9 @@ export default function RootLayout({
       className={`${birthstone.variable}`}
     >
       <body>
-        {children}
+        <CartContextProvider>
+          {children}
+        </CartContextProvider>
       </body>
     </html>
   );

@@ -67,3 +67,69 @@ export type ShopifyCollectionType = {
     }
   } | null
 }
+
+export type ShopifyCartType = {
+  id: string;
+  checkoutUrl: string;
+  totalQuantity: number;
+  cost: {
+    totalAmount: {
+      amount: string;
+      currencyCode: string;
+    }
+  }
+  lines: {
+    nodes: Array<{
+      id: string;
+      quantity: number;
+      merchandise: {
+        id: string;
+        title: string;
+        product: {
+          title: string;
+        }
+      }
+    }>
+  }
+};
+
+export type ShopifyCartLineType = {
+  id: string;
+  merchandise: {
+    id: string;
+    title: string;
+    image: {
+      url: string;
+      altText: string | null;
+    } | null;
+    price: {
+      amount: string;
+      currencyCode: string;
+    };
+    product: {
+      title: string;
+    };
+  };
+  quantity: number;
+  cost: {
+    totalAmount: {
+      amount: string;
+      currencyCode: string;
+    };
+  };
+}
+
+export type LiveCartResponseType = {
+  checkoutUrl: string;
+  cost: {
+    totalAmount: {
+      amount: string;
+      currencyCode: string;
+    };
+  };
+  lines: {
+    edges: Array<{
+      node: ShopifyCartLineType;
+    }>
+  };
+}

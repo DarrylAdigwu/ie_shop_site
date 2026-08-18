@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import BannerCarousel from "./components/BannerCarousel";
-import { shopifyFetch } from "@/lib/shopify";
+import { shopifyFetch } from "@/lib/shopifyFetch";
 import { ShopifyProductType, ShopifyCollectionType } from "@/types/shopifyTypes";
 import { GET_SHOP_COLLECTION } from "@/graphql/queries/shop";
 
@@ -18,16 +18,17 @@ export default async function ShopPage() {
     variables: { handle }
   });
 
-  console.log(response?.data?.collection);
+  // console.log(response?.data?.collection);
   const collection = response?.data?.collection?.products.edges;
-  console.log(collection)
+  // console.log(collection)
 
   const allHats = collection?.map((hat) => {
-    const title = hat.node.seo.title;
+    const title = hat.node.title;
     const images = hat.node.images.edges[0].node;
     const price = hat.node.priceRange.maxVariantPrice;
-    const productLink = hat.node.title;
+    const productLink = hat.node.handle;
 
+    // console.log(hat)
     return(
       <div
         className="shop-hat-container" 

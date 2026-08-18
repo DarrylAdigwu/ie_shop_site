@@ -6,7 +6,7 @@ export const GET_SHOP_COLLECTION = `
       title
       handle
       description
-      products(first: 10) {
+      products(first: 40) {
         edges {
           node {
             id
@@ -31,7 +31,7 @@ export const GET_SHOP_COLLECTION = `
                 currencyCode
               }
             }
-            variants(first: 5) {
+            variants(first: 40) {
               edges {
                 node {
                   price {

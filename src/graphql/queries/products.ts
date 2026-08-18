@@ -30,7 +30,7 @@ export const GET_PRODUCT_QUERY = `
         title
         description
       }
-      variants(first: 1) {
+      variants(first: 100) {
         edges {
           node {
             id

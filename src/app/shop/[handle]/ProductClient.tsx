@@ -1,53 +1,81 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { HiArrowLongLeft } from "react-icons/hi2";
+import { ShopifyProductType } from "@/types/shopifyTypes";
+import { notFound } from "next/navigation";
+import { useCart } from "@/components/CartContext";
+import AddToCartButton from "@/components/AddToCartButton";
 
-type singleShopifyImageType = {
+type SingleShopifyImageType = {
   node: {
     url: string;
     altText: string;
   }
 };
 
-export default function ProductClient({ product }: any) {
+type ProductVariantType = {
+  node: {
+    id: string;
+    title: string;
+    price: {
+      amount: string;
+      currencyCode: string;
+    };
+  }
+}
+
+export default function ProductClient({ product }: ShopifyProductType) {
+  if(!product) {
+    notFound();
+  };
+
+  const {addItem, loading} = useCart();
   const [imageIndex, setImageIndex] = useState<number>(0);
+  const [selectedSize, setSelectedSize] = useState<string>("");
 
-  const title = product.seo.title;
-  const imageEdge = product.images.edges[imageIndex];
-  const productImage = imageEdge.node;
-  const price = product.variants.edges[0].node.price;
+  const title = product.seo?.title;
+  const mainProductImage = product.images?.edges[imageIndex]?.node;
+  const price = product.variants?.edges[0]?.node?.price;
+  const variantList = product.variants?.edges || [];
+  const findMatchingVariant = product.variants.edges.find((edge) => edge.node.title === selectedSize);
+  const hasMultipleSizes = product.options[0]?.values && product.options[0].values.length > 0;
+  // console.log(findMatchingVariant)
+  // console.log(hasMultipleSizes)
+  // console.log(variantList)
 
-  const selectSizes = product.options[0].values.map((size: string, index: number) => {
+  // Create options for select size dropdown
+  const selectSizes = variantList.map((variant: ProductVariantType, index: number) => {
+    const option = variant?.node?.title;
     return(
-      <option value={size} key={index}>
-        {`Size: ${size}`}
+      <option value={option} key={index}>
+        {`Size: ${option}`}
       </option>
     )
   });
 
-  const variantImages = product.images.edges.map((image: singleShopifyImageType, index: number) => {
+  // Create array of all images from product
+  const variantImages = product.images.edges.map((image: SingleShopifyImageType, index: number) => {
     return(
       <div 
         className="variant-image-container" 
         key={index}
-        onClick={() => changeMainImage(index)}
+        onClick={() => setImageIndex(index)}
       >
         <Image 
           src={image.node.url}
           alt={image.node.altText}
           fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           className="variant-images"
         />
       </div>
     )
   });
 
-  function changeMainImage(index: number) {
-    setImageIndex(index);
-  }
+  const activeVariantId = findMatchingVariant?.node?.id || variantList[0]?.node?.id;
 
   return(
     <main id="main-product-content">
@@ -60,7 +88,6 @@ export default function ProductClient({ product }: any) {
       </Link>
 
       <div className="product-container">
-        <div className="product-content-card-container">
           <section className="product-info">
             <div className="product-title">
               <p>{title}</p>
@@ -69,12 +96,14 @@ export default function ProductClient({ product }: any) {
               <p className="price-amount">{`$${price.amount}`}</p>
             </div>
           </section>
+        <div className="product-content-card-container">
           <div className="product-image-container">
             <Image 
-              src={productImage.url}
-              alt={productImage.altText}
+              src={mainProductImage.url}
+              alt={mainProductImage.altText}
               className="product-main-image"
               fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           </div>
           <div className="product-variant-image-grid">
@@ -82,16 +111,17 @@ export default function ProductClient({ product }: any) {
           </div>
         </div>
         <div className="product-page-btns">
-          <div className="sizes-container">
+          {hasMultipleSizes && <div className="sizes-container">
             <label htmlFor="select-sizes" className="sr-only">Select a size:</label>
             <select
               name="select-sizes"
               id="select-sizes" 
               className="sizes-dropdown"
-              defaultValue={"Select a size:"}
+              value={selectedSize}
+              onChange={(e) => setSelectedSize(e.target.value)}
             >
               <option
-                value={"Select a size:"}
+                value=""
                 disabled
               >
                 Select a size: 
@@ -99,10 +129,12 @@ export default function ProductClient({ product }: any) {
               {selectSizes}
             </select>
             <IoMdArrowDropdown className="drop-arrow"/>
-          </div>
-          <button className="add-to-cart">
-            Add to Cart
-          </button>
+          </div>}
+
+          <AddToCartButton 
+            variantId={activeVariantId}
+            disabled={hasMultipleSizes && !selectedSize}
+          />
         </div>
       </div>
     </main>

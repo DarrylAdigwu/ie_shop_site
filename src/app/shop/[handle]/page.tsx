@@ -1,10 +1,10 @@
-
-import { shopifyFetch } from "@/lib/shopify";
+import { shopifyFetch } from "@/lib/shopifyFetch";
 import { ShopifyProductType } from "@/types/shopifyTypes";
 import { GET_PRODUCT_QUERY } from "@/graphql/queries/products";
 import { notFound } from "next/navigation";
 import ProductClient from "./ProductClient";
-interface Props {
+
+type Props = {
   params: Promise<{ handle: string }>;
 }
 
@@ -22,9 +22,8 @@ export default async function Product({ params }: Props) {
     notFound()
   }
 
+  // console.log(response.data);
 
-  
-  console.log(response.data)
   return(
     <ProductClient product={product} />
   )
