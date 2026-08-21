@@ -37,13 +37,13 @@ export default function ProductClient({ product }: ShopifyProductType) {
   const [imageIndex, setImageIndex] = useState<number>(0);
   const [selectedSize, setSelectedSize] = useState<string>("");
 
-  const title = product.seo?.title;
+  const title = product.title;
   const mainProductImage = product.images?.edges[imageIndex]?.node;
   const price = product.variants?.edges[0]?.node?.price;
   const variantList = product.variants?.edges || [];
   const findMatchingVariant = product.variants.edges.find((edge) => edge.node.title === selectedSize);
   const hasMultipleSizes = product.options[0]?.values && product.options[0].values.length > 0;
-  // console.log(findMatchingVariant)
+  console.log(findMatchingVariant)
   // console.log(hasMultipleSizes)
   // console.log(variantList)
 

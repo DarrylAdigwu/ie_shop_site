@@ -9,7 +9,7 @@ import { BsFillTrash2Fill } from "react-icons/bs";
 import { formatPrice } from "@/lib/utils";
 
 
-export default function Cart({liveCartId, isOpen}: {liveCartId: string | null; isOpen: boolean}) {
+export default function Cart({liveCartId, isOpen, setIsOpen}: {liveCartId: string | null; isOpen: boolean; setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;}) {
   const {cartData, loading, removeItem, updateQuantity} = useCart();
 
   // console.log(cartData)
@@ -69,7 +69,15 @@ export default function Cart({liveCartId, isOpen}: {liveCartId: string | null; i
   const subtotal = cartData?.cost.totalAmount;
   return(
     <div className={`cart ${isOpen ? "active" : ""}`}>
-      <h3>Your Cart</h3>
+      <div className="exit-cart-container">
+        <button 
+          id="exit-cart"
+          onClick={() => setIsOpen(false)}
+        >
+          x
+        </button>
+      </div>
+      <h3 className="cart-header">Your Cart</h3>
 
       {!liveCartId || allCartItems.length === 0 ? 
         <div className="empty-cart-container">

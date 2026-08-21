@@ -43,7 +43,7 @@ export default function Header(): React.JSX.Element {
         </a>
       </div>
 
-      <Cart liveCartId={cartId} isOpen={isCartOpen}/>
+      <Cart liveCartId={cartId} isOpen={isCartOpen} setIsOpen={setIsCartOpen}/>
     </header>
   )
 }

@@ -12,7 +12,7 @@ interface Props {
 
 export default async function ShopPage() {
 
-  const handle = "shop";
+  const handle = "hats";
 
   const response = await shopifyFetch<ShopifyCollectionType>({
     query: GET_SHOP_COLLECTION,
