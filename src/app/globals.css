@@ -212,9 +212,9 @@ main.main-hero-content {
   transition: transform 0.9s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* .splash-mode #hero-content-container {
+.splash-mode #hero-content-container {
   transform: translateY(-2svh); 
-} */
+}
 
 .hero-mode #hero-content-container {
   transform: translateY(0);
@@ -998,6 +998,8 @@ main.main-hero-content {
 
 .cart-item-quantity-container {
   display: flex;
+  align-content: center;
+  justify-content: center;
   border: 1px solid #171717;
   width: fit-content;
   border-radius: 4px;
@@ -1010,12 +1012,14 @@ main.main-hero-content {
   justify-content: center;
   align-items: center;
   width: 1.25rem;
+  min-width: fit-content;
   height: 1.25rem;
 }
 
 .cart-item-quantity {
   border-right: 1px solid #171717;
   border-left: 1px solid #171717;
+  padding: 0 .25rem;
 }
 
 .add-item-quantity, 
