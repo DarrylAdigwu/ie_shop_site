@@ -12,7 +12,7 @@ interface Props {
 
 export default async function ShopPage() {
 
-  const handle = "hats";
+  const handle = "shop";
 
   const response = await shopifyFetch<ShopifyCollectionType>({
     query: GET_SHOP_COLLECTION,
@@ -30,6 +30,15 @@ export default async function ShopPage() {
     const productLink = hat.node.handle;
 
     // console.log(hat)
+
+    const isPreOrderProduct = hat.node.variants.edges.some((variantEdge) => {
+      const variant = variantEdge.node;
+      const isOutOfStock = !variant.availableForSale || (variant.quantityAvailable !== undefined && variant.quantityAvailable <= 0);
+      const hasPreOrderPlan = (variant.sellingPlanAllocations?.nodes?.length ?? 0) > 0;
+      return isOutOfStock && hasPreOrderPlan;
+    });
+
+    console.log(isPreOrderProduct)
     return(
       <div
         className="shop-hat-container" 
@@ -39,6 +48,13 @@ export default async function ShopPage() {
           href={`shop/${productLink}`}
           className="shop-hat-image-container"
         >
+          {
+            isPreOrderProduct && (
+              <div style={{ position: 'absolute', top: '8px', left: '8px', backgroundColor: '#d97706', color: '#fff', padding: '4px 8px', fontSize: '11px', fontWeight: 'bold', zIndex: 10, borderRadius: '4px' }}>
+                Pre-Order
+              </div>
+            )
+          }
           <Image
             src={images.url}
             alt={images.altText}

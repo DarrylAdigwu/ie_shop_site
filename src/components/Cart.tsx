@@ -20,6 +20,8 @@ export default function Cart({liveCartId, isOpen, setIsOpen}: {liveCartId: strin
     const node = item?.node;
     const imageUrl = node?.merchandise?.image?.url || ieBlackLogo;
     const imageAlt = node?.merchandise?.image?.altText || "Product Image";
+    const preOrderPlanName = node?.sellingPlanAllocation?.sellingPlan?.name;
+
     return(
       <div className="cart-item-container" key={item.node.id}>
         <div className="remove-item-container">
@@ -40,6 +42,11 @@ export default function Cart({liveCartId, isOpen, setIsOpen}: {liveCartId: strin
           <div className="cart-item-title-container">
             <p className="cart-item-title">{`${node.merchandise.product.title}`} </p>
             <p className="cart-item-variant-title">{`(${node.merchandise.title})`}</p>
+            {preOrderPlanName && (
+              <p style={{ color: '#d97706', fontSize: '0.75rem', fontWeight: 600, marginTop: '2px' }}>
+                ✦ Pre-Order Item
+              </p>
+            )}
           </div>
           <div className="price-container">
             <p className="cart-item-price">

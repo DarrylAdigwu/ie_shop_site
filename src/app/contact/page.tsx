@@ -1,12 +1,35 @@
 "use client"
-import { JSX, useActionState } from "react";
+import React, { JSX, useActionState, useState } from "react";
 import { sendContactEmail } from "./FormActions";
 
 export default function Contact(): JSX.Element {
+  const [clientError, setClientError] = useState<string | null>(null)
   const [state, formAction, isPending] = useActionState(sendContactEmail, {
     success: false,
     error: null,
-  })
+  });
+
+  const checkFormSubmission = (event: React.SubmitEvent<HTMLFormElement>) => {
+    setClientError(null);
+    const formData = new FormData(event.currentTarget);
+    const firstName = formData.get("contact-first-name") as string;
+    const lastName = formData.get("contact-last-name") as string;
+    const email = formData.get("contact-email") as string;
+    const message = formData.get("contact-message") as string;
+
+    if(!firstName.trim() || !lastName.trim() || !email.trim() || !message.trim()) {
+      event.preventDefault();
+      setClientError("Please fill out all form fields.");
+      return;
+    };
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if(!emailRegex.test(email)) {
+      event.preventDefault();
+      setClientError("Please enter a valid email address.");
+      return;
+    }
+  }
 
   return(
     <div className="contact-container">
@@ -31,9 +54,17 @@ export default function Contact(): JSX.Element {
             <input type="email" name="contact-email" id="contact-email"  placeholder="Email" className="input"/>
           </div>
           <div className="message-container form-data-containers">
-            <label htmlFor="message">Leave Message</label>
-            <textarea name="message" id="contact-message" placeholder="Message" ></textarea>
+            <label htmlFor="contact-message">Leave Message</label>
+            <textarea name="contact-message" id="contact-message" placeholder="Message" ></textarea>
           </div>
+
+          <button 
+            id="contact-submit"
+            type="submit"
+            disabled={isPending || state.success}
+          >
+            {isPending ? "Sending Message..." : state.success ? "Message Sent!": "Send Message"}
+          </button>
         </form>
       </section>
     </div>
