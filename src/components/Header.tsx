@@ -9,8 +9,7 @@ import Cart from "./Cart";
 import { useCart } from "./CartContext";
 
 export default function Header(): React.JSX.Element {
-  const [isCartOpen, setIsCartOpen] = useState(false);
-  const { cartId, cartData} = useCart();
+  const { cartId, cartData, isCartOpen, setIsCartOpen} = useCart();
 
   const cartQuantityCount = cartData?.lines?.edges?.reduce((acc, edge) => acc + edge.node.quantity, 0) || 0;
   // console.log(cartData)

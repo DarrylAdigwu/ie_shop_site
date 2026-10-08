@@ -78,6 +78,15 @@ export default function Home() {
             >
               Contact
             </Link>
+            <Link 
+              id="social-media-btn"
+              href={`https://www.instagram.com/theie.shop`} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="link-btn"
+              >
+                Instagram
+            </Link>
           </div>)}
         </div>
       </section>

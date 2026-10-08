@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState, JSX, useRef } from "react";
-import { bannerImages } from "@/data/banner-images";
+import { bannerImages, bannerImagesDesktop } from "@/data/banner-images";
 import Image from "next/image";
 import { GoChevronRight } from "react-icons/go";
 import { GoChevronLeft } from "react-icons/go";
@@ -62,7 +62,7 @@ export default function BannerCarousel({ autoSlide = 3000 }) {
     return () => clearInterval(carouselInterval)
   }, [autoSlide])
 
-  // Model images
+  // Mobile view images
   const bannerImgs = extendSlides.map((image, index) => {
     return(
       <div className="images-container" key={index}>
@@ -78,11 +78,27 @@ export default function BannerCarousel({ autoSlide = 3000 }) {
       </div>
     )
   });
+  
+  // Desktop view images
+  const desktopBannerImgs = bannerImagesDesktop.map((image) => {
+    return (
+      <div className="images-container" key={image.id}>
+        <Image
+          src={image.src}
+          alt={image.alt}
+          className="banner-image"
+          fill
+          loading="eager"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        />
+      </div>
+    )
+  })
 
   return(
     <>
       <div 
-        className="carousel-track"
+        className="carousel-track mobile-view-banner"
         onTransitionEnd={handleTransitionEnd}
         style={{ 
           transform: `translateX(-${currentIndex * 100}%)`, 
@@ -92,11 +108,14 @@ export default function BannerCarousel({ autoSlide = 3000 }) {
         {bannerImgs}
       </div>
 
-      <div className="carousel-btn-container">
+      <div className="banner-static desktop-view-banner">
+        {desktopBannerImgs}
+      </div>
+      {/* <div className="carousel-btn-container">
         <button 
           className="banner-prev-slide"
           onClick={prevSlide}
-          >
+        >
           <GoChevronLeft />
         </button>
         <button 
@@ -105,7 +124,7 @@ export default function BannerCarousel({ autoSlide = 3000 }) {
           >
           <GoChevronRight />
         </button>
-      </div>
+      </div> */}
     </>
   )
 }
