@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import BannerCarousel from "./components/BannerCarousel";
 import { shopifyFetch } from "@/lib/shopifyFetch";
-import { ShopifyProductType, ShopifyCollectionType } from "@/types/shopifyTypes";
+import { ShopifyCollectionType } from "@/types/shopifyTypes";
 import { GET_SHOP_COLLECTION } from "@/graphql/queries/shop";
 import { formatPrice } from "@/lib/utils";
 
@@ -19,9 +19,7 @@ export default async function ShopPage() {
     variables: { handle }
   });
 
-  // console.log(response?.data?.collection);
   const collection = response?.data?.collection?.products.edges;
-  // console.log(collection)
 
   const allHats = collection?.map((hat) => {
     const title = hat.node.title;
@@ -29,54 +27,52 @@ export default async function ShopPage() {
     const price = hat.node.priceRange.maxVariantPrice;
     const productLink = hat.node.handle;
 
-    // console.log(hat)
-
     const isPreOrderProduct = hat.node.variants.edges.some((variantEdge) => {
       const variant = variantEdge.node;
       const isOutOfStock = !variant.availableForSale || (variant.quantityAvailable !== undefined && variant.quantityAvailable <= 0);
       const hasPreOrderPlan = (variant.sellingPlanAllocations?.nodes?.length ?? 0) > 0;
       return isOutOfStock && hasPreOrderPlan;
     });
-
-    console.log(isPreOrderProduct)
+    
     return(
-      <div
+      <article
         className="shop-hat-container" 
         key={hat.node.id}
       >
         <Link
           href={`shop/${productLink}`}
-          className="shop-hat-image-container"
+          className="shop-hat-card-link"
+          aria-label={`${title} - ${formatPrice(price?.amount, price?.currencyCode)}${isPreOrderProduct ? ", Available for Pre-Order:" : ""}`}
         >
-          {
-            isPreOrderProduct && (
-              <div style={{ position: 'absolute', top: '8px', left: '8px', backgroundColor: '#d97706', color: '#fff', padding: '4px 8px', fontSize: '11px', fontWeight: 'bold', zIndex: 10, borderRadius: '4px' }}>
+          <div className="shop-hat-image-container">
+            {isPreOrderProduct && (
+              <span 
+                role="status"
+                style={{ position: 'absolute', top: '8px', left: '8px', backgroundColor: '#d97706', color: '#fff', padding: '4px 8px', fontSize: '11px', fontWeight: 'bold', zIndex: 9, borderRadius: '4px' }}
+              >
                 Pre-Order
-              </div>
-            )
-          }
-          <Image
-            src={images.url}
-            alt={images.altText}
-            className="shop-hat-images"
-            // placeholder="blur"
-            // blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=="
-            fill
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 1600px"
-          />
+              </span>
+            )}
+
+            <Image
+              src={images.url}
+              alt={images.altText}
+              className="shop-hat-images"
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 1600px"
+            />
+          </div>
+
+          <div className="shop-hat-info" aria-hidden="true">
+            <span className="shop-hat-title">
+              {title}
+            </span>
+            <span className="shop-hat-price">
+              {formatPrice(price.amount, price.currencyCode)}
+            </span>
+          </div>
         </Link>
-        <Link 
-          href={`shop/${productLink}`}
-          className="shop-hat-info"
-        >
-          <span className="shop-hat-title">
-            {title}
-          </span>
-          <span className="shop-hat-price">
-            {formatPrice(price.amount, price.currencyCode)}
-          </span>
-        </Link>
-      </div>
+      </article>
     )
   });
 
@@ -85,8 +81,8 @@ export default async function ShopPage() {
       <div className="shop-banner">
         <BannerCarousel autoSlide={10000}/>
       </div>
-      <section className="shop-hat-section">
-        <h3 className="shop-headline">
+      <section className="shop-hat-section" aria-labelledby="shop-heading">
+        <h3 id="shop-heading" className="shop-headline">
           Place your Pre-Order now
         </h3>
         <div className="shop-hat-grid-container">

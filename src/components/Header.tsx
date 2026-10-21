@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import whiteLogo from "~/public/images/white-ie-logo.png";
@@ -9,36 +9,43 @@ import Cart from "./Cart";
 import { useCart } from "./CartContext";
 
 export default function Header(): React.JSX.Element {
-  const { cartId, cartData, isCartOpen, setIsCartOpen} = useCart();
+  const { isCartOpen, setIsCartOpen, cartId, cartData} = useCart();
 
   const cartQuantityCount = cartData?.lines?.edges?.reduce((acc, edge) => acc + edge.node.quantity, 0) || 0;
-  // console.log(cartData)
-  // console.log(cartQuantityCount)
 
-  // console.log(liveCartId);
   return(
     <header id="product-header-container" className="header-container">
       <div id="product-header-wrapper" className="header-wrapper">
-        <div 
+        <button 
+          type="button"
           className="shopping-bag-container"
           onClick={() => setIsCartOpen(!isCartOpen)}
+          aria-expanded={isCartOpen}
+          aria-label={`Shopping bag, ${cartQuantityCount} item${cartQuantityCount === 1 ? "" : "s"}. Open cart drawer`}
         >
           {cartQuantityCount > 0 && 
-            <div className="show-cart-total">{cartQuantityCount}</div>
+            <div className="show-cart-total" aria-hidden="true">
+              {cartQuantityCount}
+            </div>
           }
-          <FiShoppingBag id="contact-cart-icon" className="header-cart-icon"/>
-        </div>
+          <FiShoppingBag id="contact-cart-icon" className="header-cart-icon" aria-hidden="true"/>
+        </button>
 
-        <Link href="/">
+        <Link href="/" aria-label="Go to home page">
           <Image 
             id="header-logo"
             src={whiteLogo}
-            alt="IE logo"
+            alt="IE Home logo"
           />
         </Link>
 
-        <a href="https://www.instagram.com/theie.shop" target="_blank" rel="noopener noreferrer">
-          <FaInstagram className="social-media-icon" />
+        <a 
+          href="https://www.instagram.com/theie.shop" 
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Visit our Instagram page (opens in a new tab)"
+        >
+          <FaInstagram className="social-media-icon" aria-hidden="true" />
         </a>
       </div>
 

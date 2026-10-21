@@ -2,14 +2,14 @@
 import { useEffect, useState, JSX, useRef } from "react";
 import { bannerImages, bannerImagesDesktop } from "@/data/banner-images";
 import Image from "next/image";
-import { GoChevronRight } from "react-icons/go";
-import { GoChevronLeft } from "react-icons/go";
+
 
 export default function BannerCarousel({ autoSlide = 3000 }) {
   const [currentIndex, setCurrentIndex] = useState<number>(1);
   const [isTransitioning, setIsTransitioning] = useState<boolean>(true);
+  const [isPaused, setIsPaused] = useState<boolean>(false);
   const isMoving = useRef<boolean>(false);
-
+  
   // Array of cloned banner images
   const extendSlides = [
     bannerImages[bannerImages.length - 1],
@@ -55,30 +55,40 @@ export default function BannerCarousel({ autoSlide = 3000 }) {
   
   // Auto slide function
   useEffect(() => {
+    if (isPaused) return;
+
     const carouselInterval = setInterval(() => {
       nextSlide()
     }, autoSlide);
 
     return () => clearInterval(carouselInterval)
-  }, [autoSlide])
+  }, [autoSlide, isPaused])
 
-  // Mobile view images
+  // Model images
   const bannerImgs = extendSlides.map((image, index) => {
+    
+    const isClone = index === 0 || index === extendSlides.length - 1;
+
     return(
-      <div className="images-container" key={index}>
+      <div 
+        className="images-container" 
+        key={index}
+        aria-hidden={isClone ? "true" : undefined}
+      >
         <Image
           src={image.src}
-          alt={image.alt}
+          alt={isClone ? "" : image.alt}
           id={`banner-image-${image.id}`}
           className="banner-image"
           placeholder="blur"
           fill
+          loading="eager"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
       </div>
     )
   });
-  
+
   // Desktop view images
   const desktopBannerImgs = bannerImagesDesktop.map((image) => {
     return (
@@ -87,16 +97,22 @@ export default function BannerCarousel({ autoSlide = 3000 }) {
           src={image.src}
           alt={image.alt}
           className="banner-image"
-          fill
           loading="eager"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
       </div>
     )
-  })
+  });
 
   return(
-    <>
+    <section
+      className="carousel-wrapper"
+      aria-label="Promotional Banners"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      onFocus={() => setIsPaused(true)}
+      onBlur={() => setIsPaused(false)}
+    >
       <div 
         className="carousel-track mobile-view-banner"
         onTransitionEnd={handleTransitionEnd}
@@ -111,20 +127,6 @@ export default function BannerCarousel({ autoSlide = 3000 }) {
       <div className="banner-static desktop-view-banner">
         {desktopBannerImgs}
       </div>
-      {/* <div className="carousel-btn-container">
-        <button 
-          className="banner-prev-slide"
-          onClick={prevSlide}
-        >
-          <GoChevronLeft />
-        </button>
-        <button 
-          className="banner-next-slide"
-          onClick={nextSlide}
-          >
-          <GoChevronRight />
-        </button>
-      </div> */}
-    </>
+    </section>
   )
 }
