@@ -5,17 +5,16 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "cloudflare-build": "opennextjs-cloudflare build",
     "start": "next start",
     "lint": "eslint",
     "test": "jest",
     "test:watch": "jest --watch"
   },
   "dependencies": {
-    "next": "^16.4.1",
+    "next": "16.2.11",
     "nodemailer": "^10.0.10",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
     "react-icons": "^5.7.0",
     "resend": "^6.28.1",
     "zod": "^4.6.5"

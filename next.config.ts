@@ -1,10 +1,8 @@
 import type { NextConfig } from "next";
-import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
-
-initOpenNextCloudflareForDev();
 
 const nextConfig: NextConfig = {
   /* config options here */
+  adapterPath: require.resolve("@opennextjs/cloudflare"),
   images: {
     loader: "custom",
     loaderFile: "./shopify-image-loader.ts",
