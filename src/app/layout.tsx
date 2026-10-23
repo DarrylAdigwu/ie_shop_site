@@ -5,8 +5,6 @@ import "./error.css";
 import { Birthstone, Rochester, Pacifico } from "next/font/google";
 import CartContextProvider from "@/components/CartContext";
 
-export const runtime = "edge";
-
 const birthstone = Birthstone ({
   weight: "400",
   subsets: ["latin"],
