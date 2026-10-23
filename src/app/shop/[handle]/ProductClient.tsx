@@ -16,6 +16,11 @@ type SingleShopifyImageType = {
   }
 };
 
+export type ShopifyMetafieldType = {
+  type: string;
+  value: string;
+};
+
 type ProductVariantType = {
   node: {
     id: string;
@@ -26,6 +31,7 @@ type ProductVariantType = {
       amount: string;
       currencyCode: string;
     };
+    shippingMessage?: ShopifyMetafieldType | null;
     sellingPlanAllocations?: {
       nodes:
         Array<{
@@ -108,7 +114,10 @@ export default function ProductClient({ product }: ShopifyProductType) {
   const standardPrice = currentActiveVariant?.node?.price;
   const sellingPlans = currentActiveVariant?.node?.sellingPlanAllocations?.nodes || [];
   const activeSellingPlans = sellingPlans.find((a) => a.sellingPlan.id === selectedSellingPlanId);
-
+  const variantShippingMessage = currentActiveVariant?.node?.shippingMessage?.value;
+  const productShippingMessage = product?.shippingMessage?.value;
+  const shippingMessage = variantShippingMessage ?? productShippingMessage ?? "";
+  
   let displayPriceAmount = standardPrice?.amount || "0";
 
   if (activeSellingPlans) {
@@ -266,6 +275,12 @@ export default function ProductClient({ product }: ShopifyProductType) {
           {isOutOfStock && selectedSellingPlanId && (
             <p className="preorder-message" role="status" aria-live="polite">
               ✦ {activeSellingPlans?.sellingPlan?.description || "Item available via pre-order."}
+            </p>
+          )}
+          
+          {!!shippingMessage && isOutOfStock && selectedSellingPlanId && (
+            <p className="shipping-message" role="status" aria-live="polite">
+              {shippingMessage}
             </p>
           )}
           
