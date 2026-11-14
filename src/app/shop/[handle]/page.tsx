@@ -22,8 +22,6 @@ export default async function Product({ params }: Props) {
     notFound()
   }
 
-  // console.log(response.data);
-
   return(
     <ProductClient product={product} />
   )

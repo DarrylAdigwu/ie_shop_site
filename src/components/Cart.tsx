@@ -174,7 +174,6 @@ export default function Cart({liveCartId, isOpen, setIsOpen}: {liveCartId: strin
           <div className="subtotal-container">
             <h4 className="subtotal-header">Subtotal:</h4>
             <p className="subtotal">{subtotal ? formatPrice(subtotal.amount, subtotal.currencyCode): "$0.00"}</p>
-            {/* <span className="currency-code">{subtotal?.currencyCode}</span> */}
           </div>
           <Link 
             href={`${cartData.checkoutUrl}&channel=headless-storefronts`}

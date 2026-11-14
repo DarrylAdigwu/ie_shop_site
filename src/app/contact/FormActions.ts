@@ -41,8 +41,9 @@ export async function sendContactEmail(prevState: any, formData: FormData) {
   try {
      
     await resend.emails.send({
-      from: "Contact Form <onboarding@resend.dev>",
-      to: "dadigwu@gmail.com",
+      from: "Contact Form <contact@mail.theie.shop>",
+      to: "info@theie.shop",
+      replyTo: email,
       subject: `New E-Commerce Message ${firstName} ${lastName}`,
       text: `Sender: ${firstName} ${lastName} (${email}) \n\nMessage:\n${message}`,
     });

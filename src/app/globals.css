@@ -760,6 +760,7 @@ main.main-hero-content {
   font-weight: 500;
   width: 100%;
 }
+
 .preorder-message {
   color: #d97706;
 }
@@ -767,7 +768,6 @@ main.main-hero-content {
 .shipping-message {
   opacity: .75;
 }
-
 
 .product-description-container {
   position: relative;
@@ -1470,7 +1470,7 @@ footer {
   width: 100%;
 }
 
-footer p, .policy-links {
+footer p, .site-links {
   font-size: .675rem;
 }
 
@@ -1479,13 +1479,10 @@ footer p {
   min-width: fit-content;
 }
 
-.policy-links-container {
+.site-links-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
   gap: 1rem;
-  width: fit-content;
-  max-width: 500px;
 }
 
 .footer-logo-image {
@@ -1510,7 +1507,11 @@ footer p {
     gap: 1.5rem;
   }
 
-  footer p, .policy-links {
+  .site-links-container {
+    gap: 2rem;
+  }
+
+  footer p, .site-links {
     font-size: 1rem;
   }
 
@@ -1601,21 +1602,12 @@ footer p {
   height: 300px;
   width: 100svw;
   position: relative;
-  background-color: #000000;
 }
 
 .about-us-logo-image {
   object-fit: contain;
   object-position: center;
   height: 80%;
-}
-
-.white {
-  display: flex;
-}
-
-.black {
-  display: none;
 }
 
 @media screen and (min-width: 768px) {
@@ -1640,14 +1632,6 @@ footer p {
     width: 42.5%;
     left: 0;
     background-color: transparent;
-  }
-
-  .white {
-    display: none;
-  }
-
-  .black {
-    display: flex;
   }
 }
 

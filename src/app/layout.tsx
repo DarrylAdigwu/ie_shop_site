@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import type { RootLayoutProps } from "@/types/localTypes";
 import "./globals.css";
 import "./error.css";
-import { Birthstone, Rochester, Pacifico } from "next/font/google";
+import { Birthstone } from "next/font/google";
 import CartContextProvider from "@/components/CartContext";
 
 const birthstone = Birthstone ({
@@ -13,7 +13,7 @@ const birthstone = Birthstone ({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_URL || "http://localhost:3000"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_URL || "http://localhost:3000" || "http://localhost:3001"),
   title: "The IE Shop",
   description: "IE Shop official website",
   icons: {
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "The IE Shop",
     description: "Official site for the IE Shop",
-    url: process.env.NEXT_PUBLIC_URL || "http://localhost:3000",
+    url: process.env.NEXT_PUBLIC_URL || "http://localhost:3000" || "http://localhost:3001",
     siteName: "IE Shop",
     images: [
       {
